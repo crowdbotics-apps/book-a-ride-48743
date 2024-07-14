@@ -68,6 +68,7 @@ This section will show any installed modules you add from the Storyboard Modules
 - [django-social-auth](backend/modules)
 - [django-files](backend/modules)
 - [django-calendly](backend/modules)
+- [django-contact-us](backend/modules)
 
 # Getting started: Frontend
 
