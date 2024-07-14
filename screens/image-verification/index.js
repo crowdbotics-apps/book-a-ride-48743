@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  Image,
-  Pressable,
-  ScrollView
-} from "react-native";
+import { Text, View, StyleSheet, Image, Pressable, ScrollView } from "react-native";
 
 const ImageVerification = () => {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -15,73 +8,50 @@ const ImageVerification = () => {
   const [tips, setTips] = useState([]);
   useEffect(() => {
     setAspectRatios(["1:1", "2:3", "3:2", "3:4", "4:3", "4:5"]);
-    setTips([
-      "Center yourself and smile at the camera",
-      "Take a headshot - from the chest up",
-      "Make sure it's focused and well lit",
-      "Remove any hats or sunglasses"
-    ]);
+    setTips(["Center yourself and smile at the camera", "Take a headshot - from the chest up", "Make sure it's focused and well lit", "Remove any hats or sunglasses"]);
   }, []);
-  const getAspectRatio = (name) => {
+
+  const getAspectRatio = name => {
     const dimension = name.split(":");
     const style = {
       width: 10 * parseInt(dimension[0], 10),
       height: 10 * parseInt(dimension[1], 10),
-      padding:
-        18 / ((parseInt(dimension[0], 10) + parseInt(dimension[1], 10)) / 2),
+      padding: 18 / ((parseInt(dimension[0], 10) + parseInt(dimension[1], 10)) / 2),
       borderRadius: 5
     };
     return style;
   };
-  return (
-    <View style={styles.container}>
+
+  return <View style={styles.container}>
       <ScrollView>
         <Text style={styles.heading}>Verification</Text>
         <View style={styles.imageContainer}>
           <Image source={require("./assets/image.png")} style={styles.image} />
         </View>
-        <TabView
-          tabTitles={["Crop", "Filters", "Edits", "Shadows"]}
-          selected={selectedTab}
-          onPress={setSelectedTab}
-        />
+        <TabView tabTitles={["Crop", "Filters", "Edits", "Shadows"]} selected={selectedTab} onPress={setSelectedTab} />
         <View style={styles.ratiosContainer}>
-          {aspectRatios.map((ratio, index) => (
-            <Pressable
-              key={index}
-              style={styles.ratioItem}
-              onPress={() => setSelectedAspectRatio(ratio)}
-            >
-              <View
-                style={[
-                  getAspectRatio(ratio),
-                  styles.ratio,
-                  selectedAspectRatio === ratio ? styles.selectedRatio : null
-                ]}
-              />
+          {aspectRatios.map((ratio, index) => <Pressable key={index} style={styles.ratioItem} onPress={() => setSelectedAspectRatio(ratio)}>
+              <View style={[getAspectRatio(ratio), styles.ratio, selectedAspectRatio === ratio ? styles.selectedRatio : null]} />
               <Text>{ratio}</Text>
-            </Pressable>
-          ))}
+            </Pressable>)}
         </View>
         <Text style={styles.title}>
           A good photo increases your likelihood of being hired. Some photo tips
           include
         </Text>
-        {tips.map((tip, index) => (
-          <View key={index} style={styles.tipContainer}>
+        {tips.map((tip, index) => <View key={index} style={styles.tipContainer}>
             <View style={styles.bullet} />
             <Text style={styles.tip}>{tip}</Text>
-          </View>
-        ))}
+          </View>)}
         <Text>
           There may be a delay in account activation if your photo does not meet
           these guidelines. <Text style={styles.red}>More info</Text>
         </Text>
         <Button buttonText="Upload Photo" style={styles.button} />
       </ScrollView>
-    </View>
-  );
+    </View>;
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -150,7 +120,6 @@ const styles = StyleSheet.create({
     marginTop: 10
   }
 });
-
 export default ImageVerification;
 
 const TabView = ({
@@ -169,42 +138,12 @@ const TabView = ({
     backgroundColor: backgroundColor || "#F1F1F1"
   };
   const propStyle = style || {};
-  return (
-    <View
-      style={[tabViewStyles.paletteContainer, backgroundColorStyle, propStyle]}
-    >
-      {tabTitles.map((title, index) => (
-        <Pressable
-          onPress={() => (onPress ? onPress(index) : null)}
-          style={
-            index === selected
-              ? [tabViewStyles.selected, tabColorStyle, tabViewStyles.tabItem]
-              : [
-                  tabViewStyles.unSelected,
-                  backgroundColorStyle,
-                  tabViewStyles.tabItem
-                ]
-          }
-          key={index}
-        >
-          {icons
-            ? (
-            <Image
-              source={icons[index]}
-              style={[
-                tabViewStyles.icon,
-                index === selected
-                  ? tabViewStyles.selectedIcon
-                  : tabViewStyles.unSelectedIcon
-              ]}
-            />
-              )
-            : null}
+  return <View style={[tabViewStyles.paletteContainer, backgroundColorStyle, propStyle]}>
+      {tabTitles.map((title, index) => <Pressable onPress={() => onPress ? onPress(index) : null} style={index === selected ? [tabViewStyles.selected, tabColorStyle, tabViewStyles.tabItem] : [tabViewStyles.unSelected, backgroundColorStyle, tabViewStyles.tabItem]} key={index}>
+          {icons ? <Image source={icons[index]} style={[tabViewStyles.icon, index === selected ? tabViewStyles.selectedIcon : tabViewStyles.unSelectedIcon]} /> : null}
           <Text>{title}</Text>
-        </Pressable>
-      ))}
-    </View>
-  );
+        </Pressable>)}
+    </View>;
 };
 
 const tabViewStyles = StyleSheet.create({
@@ -246,7 +185,7 @@ const tabViewStyles = StyleSheet.create({
   }
 });
 
-const Button = (params) => {
+const Button = params => {
   const backgroundColor = params.color || "#000";
   const textColor = params.textColor || "#fff";
   const btnStyle = {
@@ -257,21 +196,16 @@ const Button = (params) => {
   const btnText = {
     color: textColor
   };
-  return (
-    <View style={[buttonStyles.btnContainer, params.style]}>
+  return <View style={[buttonStyles.btnContainer, params.style]}>
       <View style={!params.hideShadow ? buttonStyles.shadowContainer : null}>
-        <Pressable
-          style={[buttonStyles.btn, btnStyle, params.style]}
-          onPress={params.onPress}
-        >
+        <Pressable style={[buttonStyles.btn, btnStyle, params.style]} onPress={params.onPress}>
           <Text style={[buttonStyles.btnText, btnText]}>
             {params.buttonText}
           </Text>
           <View style={styles.childrenContainer}>{params.children}</View>
         </Pressable>
       </View>
-    </View>
-  );
+    </View>;
 };
 
 const buttonStyles = StyleSheet.create({
@@ -291,7 +225,6 @@ const buttonStyles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-
     flexDirection: "row"
   },
   btnText: {

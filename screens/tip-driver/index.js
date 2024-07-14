@@ -1,45 +1,24 @@
 import React from "react";
-import {
-  Text,
-  StyleSheet,
-  View,
-  Image,
-  ScrollView,
-  ImageBackground,
-  TouchableHighlight
-} from "react-native";
+import { Text, StyleSheet, View, Image, ScrollView, ImageBackground, TouchableHighlight } from "react-native";
 
 const TipDriver = () => {
-  return (
-    <ScrollView>
-    <ImageBackground
-      source={require("./assets/background.png")}
-      style={styles.imageBackground}
-      imageStyle={styles.imageStyle}
-    >
+  return <ScrollView>
+    <ImageBackground source={require("./assets/background.png")} style={styles.imageBackground} imageStyle={styles.imageStyle}>
 
       <View style={styles.headerContainer}>
         <View style={styles.header}>
           <Image source={require("./assets/back.png")} style={styles.back} />
-          <Text/>
-          <Image
-            source={require("./assets/file.png")}
-            style={styles.message}
-          />
+          <Text />
+          <Image source={require("./assets/file.png")} style={styles.message} />
         </View>
       </View>
       <View style={styles.imageContainer}>
-      <Image
-            source={require("./assets/direction.png")}
-            style={styles.direction}
-          />
+      <Image source={require("./assets/direction.png")} style={styles.direction} />
       </View>
       <View style={styles.detailContainer}>
         <View style={styles.centerSection}>
       <View style={styles.imgContainer2}>
-          <Image source={require(
-
-            "./assets/edit.png")} style={styles.editImg} />
+          <Image source={require("./assets/edit.png")} style={styles.editImg} />
         </View>
         </View>
         <Text style={styles.username}>Username</Text>
@@ -65,19 +44,33 @@ const TipDriver = () => {
       </View>
       <View style={styles.buttonBottom}>
         <Button>Confirm</Button>
-        <Button backgroundColor="#fff" color="#000" borderWidth={1} >
+        <Button backgroundColor="#fff" color="#000" borderWidth={1}>
           Pass
         </Button>
       </View>
       </View>
     </ImageBackground>
-    </ScrollView>
-  );
+    </ScrollView>;
 };
+
 const styles = StyleSheet.create({
-  back: { width: 11.25, height: 20, resizeMode: "contain", marginLeft: -15 },
-  message: { width: 70, height: 70, resizeMode: "contain", marginRight: -30, marginBottom: -20 },
-  headerContainer: { paddingHorizontal: 10, height: 140 },
+  back: {
+    width: 11.25,
+    height: 20,
+    resizeMode: "contain",
+    marginLeft: -15
+  },
+  message: {
+    width: 70,
+    height: 70,
+    resizeMode: "contain",
+    marginRight: -30,
+    marginBottom: -20
+  },
+  headerContainer: {
+    paddingHorizontal: 10,
+    height: 140
+  },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -91,9 +84,19 @@ const styles = StyleSheet.create({
     height: null,
     flex: 1
   },
-  imageStyle: { resizeMode: "stretch" },
-  imageContainer: { justifyContent: "center", alignItems: "center" },
-  direction: { width: 110, height: 110, resizeMode: "contain", marginLeft: 50 },
+  imageStyle: {
+    resizeMode: "stretch"
+  },
+  imageContainer: {
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  direction: {
+    width: 110,
+    height: 110,
+    resizeMode: "contain",
+    marginLeft: 50
+  },
   imgContainer2: {
     height: 84,
     width: 84,
@@ -102,12 +105,38 @@ const styles = StyleSheet.create({
     backgroundColor: "#DADADA",
     borderRadius: 60
   },
-  detailContainer: { backgroundColor: "#fff", paddingHorizontal: 10, paddingVertical: 20 },
-  editImg: { resizeMode: "contain", height: 42, width: 42 },
-  centerSection: { justifyContent: "center", alignItems: "center" },
-  username: { fontSize: 22, textAlign: "center", marginTop: 5 },
-  rating: { textAlign: "center", fontSize: 30, fontWeight: "bold", marginTop: 20 },
-  text: { textAlign: "center", fontSize: 22, marginTop: 10, color: "#505050", marginHorizontal: 40 },
+  detailContainer: {
+    backgroundColor: "#fff",
+    paddingHorizontal: 10,
+    paddingVertical: 20
+  },
+  editImg: {
+    resizeMode: "contain",
+    height: 42,
+    width: 42
+  },
+  centerSection: {
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  username: {
+    fontSize: 22,
+    textAlign: "center",
+    marginTop: 5
+  },
+  rating: {
+    textAlign: "center",
+    fontSize: 30,
+    fontWeight: "bold",
+    marginTop: 20
+  },
+  text: {
+    textAlign: "center",
+    fontSize: 22,
+    marginTop: 10,
+    color: "#505050",
+    marginHorizontal: 40
+  },
   tabView: {
     height: 48,
     backgroundColor: "#F1F1F1",
@@ -138,7 +167,9 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 10
   },
-  tabText: { fontSize: 12 },
+  tabText: {
+    fontSize: 12
+  },
   buttonBottom: {
     flexDirection: "row",
     justifyContent: "space-evenly",
@@ -146,26 +177,21 @@ const styles = StyleSheet.create({
   }
 });
 
-const Button = (props) => {
-  return (
-    <TouchableHighlight onPress={props.onPress} underlayColor="#DDDDDD">
-      <View
-        style={[
-          btnStyles.button,
-          {
-            backgroundColor: props.backgroundColor ? props.backgroundColor : "#000000",
-            height: props.height ? props.height : 49,
-            borderWidth: props.borderWidth ? props.borderWidth : 0,
-            borderColor: props.borderColor ? props.borderColor : "#000000"
-          }
-        ]}
-      >
-        <Text style={[btnStyles.text, { color: props.color ? props.color : "#ffffff" }]}>
+const Button = props => {
+  return <TouchableHighlight onPress={props.onPress} underlayColor="#DDDDDD">
+      <View style={[btnStyles.button, {
+      backgroundColor: props.backgroundColor ? props.backgroundColor : "#000000",
+      height: props.height ? props.height : 49,
+      borderWidth: props.borderWidth ? props.borderWidth : 0,
+      borderColor: props.borderColor ? props.borderColor : "#000000"
+    }]}>
+        <Text style={[btnStyles.text, {
+        color: props.color ? props.color : "#ffffff"
+      }]}>
           {props.children}
         </Text>
       </View>
-    </TouchableHighlight>
-  );
+    </TouchableHighlight>;
 };
 
 const btnStyles = StyleSheet.create({

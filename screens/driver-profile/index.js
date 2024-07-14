@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  Image,
-  TextInput,
-  Pressable,
-  ScrollView
-} from "react-native";
+import { Text, View, StyleSheet, Image, TextInput, Pressable, ScrollView } from "react-native";
 
 const DriverProfile = () => {
   const [profile, setProfile] = useState({});
@@ -24,8 +16,7 @@ const DriverProfile = () => {
       picture: require("./assets/profilePicture.png")
     });
   }, []);
-  return (
-    <View style={styles.container}>
+  return <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
           <Image source={profile.picture} style={styles.profilePicture} />
@@ -39,52 +30,25 @@ const DriverProfile = () => {
         <Input text="Name" value={name} onChange={text => setName(text)} />
         <Input text="Email" value={email} onChange={text => setEmail(text)} />
         <View style={styles.halfInputs}>
-          <Input
-            text="Car Model"
-            value={carModel}
-            onChange={setCarModel}
-            style={styles.input1}
-            containerStyle={styles.inputContainer1}
-          />
-          <Input
-            text="Seats"
-            value={seats}
-            onChange={setSeats}
-            style={styles.input2}
-            containerStyle={styles.inputContainer2}
-          />
+          <Input text="Car Model" value={carModel} onChange={setCarModel} style={styles.input1} containerStyle={styles.inputContainer1} />
+          <Input text="Seats" value={seats} onChange={setSeats} style={styles.input2} containerStyle={styles.inputContainer2} />
         </View>
         <View style={styles.halfInputs}>
-          <Input
-            text="Plate Number"
-            value={plateNumber}
-            onChange={setPlateNumber}
-            style={styles.input1}
-            containerStyle={styles.inputContainer1}
-          />
-          <Input
-            text="Color"
-            value={color}
-            onChange={setColor}
-            style={styles.input2}
-            containerStyle={styles.inputContainer2}
-          />
+          <Input text="Plate Number" value={plateNumber} onChange={setPlateNumber} style={styles.input1} containerStyle={styles.inputContainer1} />
+          <Input text="Color" value={color} onChange={setColor} style={styles.input2} containerStyle={styles.inputContainer2} />
         </View>
         <Text style={styles.uploadText}>Driver license</Text>
         <View style={styles.uploadLicense}>
           <Text style={styles.placeholder}>Upload</Text>
           <Pressable style={styles.button}>
-            <Image
-              source={require("./assets/uploadIcon.png")}
-              style={styles.icon}
-            />
+            <Image source={require("./assets/uploadIcon.png")} style={styles.icon} />
           </Pressable>
         </View>
         <Button buttonText="Save" />
       </ScrollView>
-    </View>
-  );
+    </View>;
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -185,60 +149,24 @@ const styles = StyleSheet.create({
     resizeMode: "contain"
   }
 });
-
 export default DriverProfile;
 
 const Input = props => {
-  return (
-    <View style={[inputStyles.inputContainer, props.containerStyle]}>
-      {props.text
-        ? (
-        <Text style={inputStyles.inputText}>{props.text}</Text>
-          )
-        : null}
+  return <View style={[inputStyles.inputContainer, props.containerStyle]}>
+      {props.text ? <Text style={inputStyles.inputText}>{props.text}</Text> : null}
 
-      <TextInput
-        style={[
-          inputStyles.input,
-          props.style,
-          props.textArea ? inputStyles.textArea : null
-        ]}
-        placeholder={props.placeholder ? props.placeholder : "Enter"}
-        value={props.value}
-        onChangeText={text => props.onChange(text)}
-        placeholderTextColor={
-          props.placeholderTextColor ? props.placeholderTextColor : "#9B9B9B"
-        }
-        editable={props.editable !== false}
-        autoCapitalize="none"
-        autoCorrect={false}
-        multiline={!!props.textArea}
-      />
-      {props.errorText
-        ? (
-        <Text style={inputStyles.error}>{props.errorText}</Text>
-          )
-        : null}
-      {props.icon
-        ? (
-        <Image
-          source={props.icon}
-          style={
-            props.text ? inputStyles.iconWithText : inputStyles.iconWithoutText
-          }
-        />
-          )
-        : null}
+      <TextInput style={[inputStyles.input, props.style, props.textArea ? inputStyles.textArea : null]} placeholder={props.placeholder ? props.placeholder : "Enter"} value={props.value} onChangeText={text => props.onChange(text)} placeholderTextColor={props.placeholderTextColor ? props.placeholderTextColor : "#9B9B9B"} editable={props.editable !== false} autoCapitalize="none" autoCorrect={false} multiline={!!props.textArea} />
+      {props.errorText ? <Text style={inputStyles.error}>{props.errorText}</Text> : null}
+      {props.icon ? <Image source={props.icon} style={props.text ? inputStyles.iconWithText : inputStyles.iconWithoutText} /> : null}
       <View style={styles.children}>{props.children}</View>
-    </View>
-  );
+    </View>;
 };
 
 const inputStyles = StyleSheet.create({
   inputContainer: {
     flexDirection: "column",
-    justifyContent: "center"
-    // flex: 1
+    justifyContent: "center" // flex: 1
+
   },
   inputText: {
     fontSize: 14,
@@ -288,20 +216,16 @@ const Button = params => {
   const btnText = {
     color: params.outline ? "#000" : textColor
   };
-  return (
-    <View style={buttonStyles.btnContainer}>
+  return <View style={buttonStyles.btnContainer}>
       <View style={!params.hideShadow ? buttonStyles.shadowContainer : null}>
-        <Pressable
-          style={[buttonStyles.btn, btnStyle, params.style]}
-          onPress={params.onPress}>
+        <Pressable style={[buttonStyles.btn, btnStyle, params.style]} onPress={params.onPress}>
           <Text style={[buttonStyles.btnText, btnText]}>
             {params.buttonText}
           </Text>
           <View style={styles.childrenContainer}>{params.children}</View>
         </Pressable>
       </View>
-    </View>
-  );
+    </View>;
 };
 
 const buttonStyles = StyleSheet.create({
@@ -324,7 +248,6 @@ const buttonStyles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-
     flexDirection: "row"
   },
   btnText: {
