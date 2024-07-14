@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ad9a492384906344b46c398197cb22aaab7f01baf79e7e2778ed2ff342893d5c"
+            "sha256": "fa6c51f4cc899a229f3729524c0fae67cadc00ef05035437d8f001a615cf0758"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -87,6 +87,10 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==5.3.3"
+        },
+        "cb-django-calendly": {
+            "editable": true,
+            "path": "./modules/django_calendly"
         },
         "cb-django-files": {
             "editable": true,
